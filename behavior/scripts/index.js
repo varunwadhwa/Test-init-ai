@@ -32,15 +32,27 @@ exports.handle = (client) => {
       client.done()
     }
   })
+  
+  const greetingRecipient = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addResponse('greeting/sarcasm_reply')
+      client.done()
+    }
+  })
 
   client.runFlow({
     classifications: {
-      // map inbound message classifications to names of streams
+      'greeting/greeting_recipient':'greetingRecipient'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
     },
     streams: {
+	  greetingRecipient : [greetingRecipient],	
       main: 'onboarding',
       onboarding: [sayHello],
       end: [untrained],
