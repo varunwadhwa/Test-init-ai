@@ -43,16 +43,29 @@ exports.handle = (client) => {
       client.done()
     }
   })
+  
+  const humanIdentity = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addResponse('provide_identity_information/affirmative')
+      client.done()
+    }
+  })
 
   client.runFlow({
     classifications: {
-      'greeting/greeting_recipient':'greetingRecipient'
+      'greeting/greeting_recipient':'greetingRecipient',
+      'ask_identity/human':'humanIdentity'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
     },
     streams: {
 	  greetingRecipient : [greetingRecipient],	
+	  humanIdentity : [humanIdentity],
       main: 'onboarding',
       onboarding: [sayHello],
       end: [untrained],
