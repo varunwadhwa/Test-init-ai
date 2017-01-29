@@ -75,8 +75,8 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      const conversationState = client.getConversationState()
-      client.addResponse('iterate_name/wish',{patient_name:conversationState.first_name})
+      //const conversationState = client.getConversationState()
+      client.addResponse('iterate_name/wish')
       client.done()
     }
   })
