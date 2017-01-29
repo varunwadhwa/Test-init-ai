@@ -62,7 +62,7 @@ exports.handle = (client) => {
       let last_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'last_name')
 
       if (first_name && last_name) {
-		  console.log('got first and last name');
+		  console.log('got first' + first_name + 'and last name' + last_name);
         client.updateConversationState({
           first_name : first_name,
           last_name : last_name
@@ -75,9 +75,9 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      //const conversationState = client.getConversationState()
-      //console.log('in prompt method with first name' + conversationState.first_name + 'last name' + conversationState.last_name);
-      client.addResponse('iterate_name/wish')
+      const conversationState = client.getConversationState()
+      console.log('in prompt method with first name' + conversationState.first_name + 'last name' + conversationState.last_name);
+      client.addResponse('iterate_name/wish/Formal',)
       client.done()
     }
   })
