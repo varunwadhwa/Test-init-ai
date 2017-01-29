@@ -75,7 +75,8 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      client.addResponse('provide_identity_information/affirmative')
+      const conversationState = client.getConversationState()
+      client.addResponse('iterate_name/wish',{patient_name:conversationState.first_name})
       client.done()
     }
   })
