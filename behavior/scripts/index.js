@@ -54,11 +54,37 @@ exports.handle = (client) => {
       client.done()
     }
   })
+  
+  const saveDemographicDetails = client.createStep({
+	extractInfo() {
+	console.log('in demographics extract info');
+      let first_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'first_name')
+      let last_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'last_name')
+
+      if (first_name && last_name) {
+		  console.log('got first and last name');
+        client.updateConversationState({
+          first_name : first_name,
+          last_name : last_name
+        })
+      }
+    }, 
+	  
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addResponse('provide_identity_information/affirmative')
+      client.done()
+    }
+  })
 
   client.runFlow({
     classifications: {
       'greeting/greeting_recipient':'greetingRecipient',
-      'ask_identity/human':'humanIdentity'
+      'ask_identity/human':'humanIdentity',
+      'provide_demographic_details/Name':'saveDemographicDetails'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
@@ -66,6 +92,7 @@ exports.handle = (client) => {
     streams: {
 	  greetingRecipient : [greetingRecipient],	
 	  humanIdentity : [humanIdentity],
+	  saveDemographicDetails : [saveDemographicDetails],
       main: 'onboarding',
       onboarding: [sayHello],
       end: [untrained],
