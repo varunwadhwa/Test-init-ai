@@ -75,7 +75,7 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      //const conversationState = client.getConversationState()
+      const conversationState = client.getConversationState()
       client.addResponse('iterate_name/wish')
       client.done()
     }
@@ -85,7 +85,7 @@ exports.handle = (client) => {
     classifications: {
       'greeting/greeting_recipient':'greetingRecipient',
       'ask_identity/human':'humanIdentity',
-      'provide_demographic_details/Name':'saveDemographicDetails'
+      'provide_demographic_details/name':'saveDemographicDetails'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
