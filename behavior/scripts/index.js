@@ -75,9 +75,9 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      const conversationState = client.getConversationState()
-      console.log('in prompt method with first name' + client.getConversationState().first_name + 'last name' + client.getConversationState().last_name);
-      client.addResponse('iterate_name/wish/Formal',conversationState)
+      let data = client.getConversationState()
+      console.log('in prompt method with first name' + data.first_name.value + 'last name' + data.last_name.value);
+      client.addResponse('iterate_name/wish/Formal',{first_name : data.first_name.value,last_name : data.last_name.value})
       client.done()
     }
   })
