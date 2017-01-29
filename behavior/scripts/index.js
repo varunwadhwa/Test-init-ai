@@ -76,7 +76,8 @@ exports.handle = (client) => {
 
     prompt() {
       const conversationState = client.getConversationState()
-      client.addResponse('iterate_name/wish/Formal')
+      console.log('in prompt method with data' + conversationState);
+      client.addResponse('iterate_name/wish/Formal',conversationState)
       client.done()
     }
   })
