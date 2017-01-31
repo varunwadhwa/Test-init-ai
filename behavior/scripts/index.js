@@ -57,12 +57,10 @@ exports.handle = (client) => {
   
   const saveDemographicDetails = client.createStep({
 	extractInfo() {
-	console.log('in demographics extract info');
       let first_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'first_name')
       let last_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'last_name')
 
       if (first_name && last_name) {
-		  console.log('got first' + first_name + 'and last name' + last_name);
         client.updateConversationState({
           first_name : first_name,
           last_name : last_name
@@ -76,13 +74,20 @@ exports.handle = (client) => {
 
     prompt() {
       let data = client.getConversationState()
-      console.log('in prompt method with first name' + data.first_name.value + 'last name' + data.last_name.value);
       client.addResponse('iterate_name/wish/formal',{'patient_name#first_name' : data.first_name.value})
       client.done()
     }
   })
 
+  const sendInitialOnboardGreeting = function (eventType, payload) {
+    client.addTextResponse("Hi I'm Siya, Weclome");
+    client.done()
+  }
+
   client.runFlow({
+    eventHandlers: {   
+      'user:greeting:onboarding': sendInitialOnboardGreeting
+    }, 
     classifications: {
       'greeting/greeting_recipient':'greetingRecipient',
       'ask_identity/human':'humanIdentity',
