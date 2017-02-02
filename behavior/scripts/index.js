@@ -59,7 +59,6 @@ exports.handle = (client) => {
 	extractInfo() {
       let first_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'first_name')
       let last_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'last_name')
-      console.log('got patient name as first name' + first_name.value);
       if (first_name) {
         client.updateConversationState({
           first_name : first_name
@@ -73,8 +72,6 @@ exports.handle = (client) => {
 
     prompt() {
       let data = client.getConversationState()
-      console.log('in prompt data is ' + data + 'and name' + data.first_name);
-      console.log('template to be sent - iterate_name/wish/congratulatory_msg');
       client.addResponse('iterate_name/wish/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
       client.addResponse('message/assist_msg/get_data_msg');
       client.addResponse('ask_for_info/patient_details/vital/height');
