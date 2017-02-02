@@ -86,7 +86,7 @@ exports.handle = (client) => {
     client.addTextResponse('Welcome to Siya , your very own personal assistant.');
     let data = client.getConversationState()
     if(!(data.first_name && data.last_name)){
-      client.addTextResponse('ask_for_info/patient/name');
+      client.addResponse('ask_for_info/patient/name');
       client.expect('saveDemographicDetails')
     }
     //show patient demographics
