@@ -72,10 +72,10 @@ exports.handle = (client) => {
 
     prompt() {
       let data = client.getConversationState()
-      client.addResponse('iterate_name/wish/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
-      client.addResponse('message/assist_msg/get_data_msg');
-      client.addResponse('ask_for_info/patient_details/vital/height');
-      client.expect('saveHeight',['provide_info/vital/height'])
+      client.addResponse('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
+      client.addResponse('message/assist_get_data_msg');
+      client.addResponse('ask_vital/height');
+      client.expect('saveHeight',['provide_vital_value/height'])
       client.done()
     }
   })
@@ -84,8 +84,8 @@ exports.handle = (client) => {
     client.addTextResponse('Welcome to Siya , your very own personal assistant.');
     let data = client.getConversationState()
     if(!(data.first_name && data.last_name)){
-      client.addResponse('ask_for_info/patient/name');
-      client.expect('saveDemographicDetails',['provide_demographic_details/name','provide_info/patient_name'])
+      client.addResponse('ask_name/patient_name');
+      client.expect('saveDemographicDetails',['provide_name/patient_name','provide_name/patient_name'])
     }
     //show patient demographics
     else{
@@ -113,8 +113,8 @@ exports.handle = (client) => {
       let weight = Boolean(client.getConversationState().weight);
       if(!weight){
         //ask for weight
-        client.addResponse('ask_for_info/patient_details/vital/weight')
-        client.expect('saveWeight',['provide_info/vital/weight'])
+        client.addResponse('ask_vital/weight')
+        client.expect('saveWeight',['provide_vital_value/weight'])
       }else{
         //handle this later  
       }
@@ -152,7 +152,7 @@ exports.handle = (client) => {
         'vital#vital_ideal_value' : '65',
         'vital#vital_unit' : 'kg'
         }
-        client.addResponse('provide_info/patient_details/vital/bmi_result',data)
+        client.addResponse('provide_vital_value/bmi_value_range_text_normal',data)
       }else{
         //handle this later  
       }
@@ -166,9 +166,9 @@ exports.handle = (client) => {
     classifications: {
       'greeting/greeting_recipient':'greetingRecipient',
       'ask_identity/human':'humanIdentity',
-      'provide_demographic_details/name':'saveDemographicDetails',
-      'provide_info/patient_name':'saveDemographicDetails',
-      'provide_info/vital/height':'saveHeight'
+      'provide_name/patient_name':'saveDemographicDetails',
+      'provide_name/patient_name':'saveDemographicDetails',
+      'provide_vital_value/height':'saveHeight'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
