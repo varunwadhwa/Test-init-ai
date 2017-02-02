@@ -62,8 +62,7 @@ exports.handle = (client) => {
       console.log('got patient name as first name' + first_name.value);
       if (first_name) {
         client.updateConversationState({
-          first_name : first_name,
-          last_name : last_name
+          first_name : first_name
         })
       }
     }, 
