@@ -75,7 +75,7 @@ exports.handle = (client) => {
       client.addResponse('iterate_name/wish/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
       client.addResponse('message/assist_msg/get_data_msg');
       client.addResponse('ask_for_info/patient_details/vital/height');
-      client.expect('saveHeight')
+      client.expect('saveHeight',['provide_info/vital/height'])
       client.done()
     }
   })
@@ -166,7 +166,8 @@ exports.handle = (client) => {
       'greeting/greeting_recipient':'greetingRecipient',
       'ask_identity/human':'humanIdentity',
       'provide_demographic_details/name':'saveDemographicDetails',
-      'provide_info/patient_name':'saveDemographicDetails'
+      'provide_info/patient_name':'saveDemographicDetails',
+      'provide_info/vital/height':'saveHeight'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
