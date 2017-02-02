@@ -1,0 +1,10 @@
+---
+title: get_vital_height_2
+timestamp: 2017-02-02T19:56:40.78593735+05:30
+---
+
+< Please tell me your height.
+* ask_for_info/patient_details
+
+[5.3](vital#vital_value)
+* provide_info/vital/height
