@@ -88,7 +88,7 @@ exports.handle = (client) => {
     let data = client.getConversationState()
     if(!(data.first_name && data.last_name)){
       client.addResponse('ask_for_info/patient/name');
-      client.expect('saveDemographicDetails',['provide_demographic_details/name'])
+      client.expect('saveDemographicDetails',['provide_demographic_details/name','provide_info/patient_name'])
     }
     //show patient demographics
     else{
