@@ -68,7 +68,7 @@ exports.handle = (client) => {
     }, 
 	  
     satisfied() {
-      return Boolean(client.getConversationState().first_name && client.getConversationState().last_name)
+      return Boolean(client.getConversationState().first_name)
     },
 
     prompt() {
