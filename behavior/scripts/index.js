@@ -97,6 +97,7 @@ exports.handle = (client) => {
   const saveHeight = client.createStep({
     extractInfo() {
       let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'height')
+      console.log('got height as' + height);
       if (height) {
         client.updateConversationState({
           height : height
@@ -105,15 +106,15 @@ exports.handle = (client) => {
     }, 
     
     satisfied() {
-      return Boolean(client.getConversationState().height)
+      return Boolean(client.getConversationState().weight)
     },
 
     prompt() {
-      let weight = Boolean(client.getConversationState().height);
+      let weight = Boolean(client.getConversationState().weight);
       if(!weight){
         //ask for weight
         client.addResponse('ask_for_info/patient_details/vital/weight')
-        client.expect('saveWeight')
+        client.expect('saveWeight',['provide_info/vital/weight'])
       }else{
         //handle this later  
       }
