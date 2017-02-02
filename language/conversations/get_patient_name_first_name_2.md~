@@ -7,4 +7,4 @@ timestamp: 2017-02-02T11:57:08.165620365+05:30
 * ask_for_info/patient/name
 
 I'm [Varun](patient_name#first_name).
-* provide_demographic_details/name
+* provide_info/patient_name

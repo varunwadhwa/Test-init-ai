@@ -59,7 +59,7 @@ exports.handle = (client) => {
 	extractInfo() {
       let first_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'first_name')
       let last_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'last_name')
-
+      console.log('got patient name as first name' + first_name.value);
       if (first_name && last_name) {
         client.updateConversationState({
           first_name : first_name,
