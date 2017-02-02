@@ -167,7 +167,8 @@ exports.handle = (client) => {
     classifications: {
       'greeting/greeting_recipient':'greetingRecipient',
       'ask_identity/human':'humanIdentity',
-      'provide_demographic_details/name':'saveDemographicDetails'
+      'provide_demographic_details/name':'saveDemographicDetails',
+      'provide_info/patient_name':'saveDemographicDetails'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
