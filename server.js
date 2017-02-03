@@ -47,7 +47,7 @@ function sendLogicResult(invocationPayload, result) {
       })
 
       res.on('end', () => {
-        console.log('Result sent successfully', res.body)
+        console.log('Result sent successfully ' +res.body);
       })
     })
 
