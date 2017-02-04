@@ -117,6 +117,7 @@ exports.handle = (client) => {
       console.log('in prompt of save height' + weight);
       if(!weight){
         //ask for weight
+        console.log('selected template - ask_vital/weight');
         client.addResponse('ask_vital/weight')
         client.expect('saveWeight',['provide_vital_value/weight'])
       }else{
