@@ -97,7 +97,7 @@ exports.handle = (client) => {
   const saveHeight = client.createStep({
     extractInfo() {
       let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'vital_value')
-      console.log('got height as' + height);
+      console.log('got height as' + height.value);
       if (height) {
         client.updateConversationState({
           height : height
@@ -106,6 +106,7 @@ exports.handle = (client) => {
     }, 
     
     satisfied() {
+      console.log('in satisfied conv state condition is' + (Boolean(client.getConversationState().weight)))    
       return Boolean(client.getConversationState().weight)
     },
 
@@ -127,7 +128,7 @@ exports.handle = (client) => {
 */
   const saveWeight = client.createStep({
     extractInfo() {
-      let weight = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'weight')
+      let weight = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'vital_value')
       if (weight) {
         client.updateConversationState({
           weight : weight
