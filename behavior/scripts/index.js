@@ -114,6 +114,7 @@ exports.handle = (client) => {
 
     prompt() {
       let weight = Boolean(client.getConversationState().weight);
+      console.log('in prompt of save height' + weight);
       if(!weight){
         //ask for weight
         client.addResponse('ask_vital/weight')
