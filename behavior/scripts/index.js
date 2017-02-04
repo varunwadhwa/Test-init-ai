@@ -106,13 +106,13 @@ exports.handle = (client) => {
     }, 
     
     satisfied() {
-      let weight = client.getConversationState().weight)
+      let weight = client.getConversationState().weight
       console.log('in satisfied weight is' + weight.value);   
       return Boolean(client.getConversationState().weight)
     },
 
     prompt() {
-      let weight = Boolean(client.getConversationState().weight;
+      let weight = Boolean(client.getConversationState().weight);
       if(!weight){
         //ask for weight
         client.addResponse('ask_vital/weight')
