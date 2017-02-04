@@ -73,18 +73,18 @@ exports.handle = (client) => {
     prompt() {
       let data = client.getConversationState()
       client.addResponse('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
-      client.addResponse('message/assist_get_data_msg');
-      client.addResponse('ask_vital/height');
+      client.addResponse('message/assist_get_data_msg')
+      client.addResponse('ask_vital/height')
       client.expect('saveHeight',['provide_vital_value/height'])
       client.done()
     }
   })
 
   const sendInitialOnboardGreeting = function (eventType, payload) {
-    client.addTextResponse('Welcome to Siya , your very own personal assistant.');
+    client.addTextResponse('Welcome to Siya , your very own personal assistant.')
     let data = client.getConversationState()
     if(!(data.first_name && data.last_name)){
-      client.addResponse('ask_name/patient_name');
+      client.addResponse('ask_name/patient_name')
       client.expect('saveDemographicDetails',['provide_name/patient_name','provide_name/patient_name'])
     }
     //show patient demographics
@@ -98,7 +98,7 @@ exports.handle = (client) => {
     extractInfo() {
       let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital_value' , 'height')
       if (height) {
-        console.log('got height as' + height.value);
+        console.log('got height as' + height.value)
         client.updateConversationState({
           height : height
         })
@@ -108,16 +108,16 @@ exports.handle = (client) => {
     satisfied() {
       let weight = client.getConversationState().weight
       if(weight)
-        console.log('in satisfied weight is' + weight.value);   
+        console.log('in satisfied weight is' + weight.value) 
       return Boolean(client.getConversationState().weight)
     },
 
     prompt() {
-      let weight = Boolean(client.getConversationState().weight);
-      console.log('in prompt of save height' + weight);
+      let weight = Boolean(client.getConversationState().weight)
+      console.log('in prompt of save height' + weight)
       if(!weight){
         //ask for weight
-        console.log('selected template - ask_vital/weight');
+        console.log('selected template - ask_vital/weight')
         client.addResponse('ask_vital/weight')
         client.expect('saveWeight',['provide_vital_value/weight'])
       }else{
@@ -145,12 +145,12 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      let weight = Boolean(client.getConversationState().weight);
-      let height = Boolean(client.getConversationState().height);
+      let weight = Boolean(client.getConversationState().weight)
+      let height = Boolean(client.getConversationState().height)
       if(weight && height){
         //calculate BMI
         let BMI,data;
-        BMI = weight/(height*height);
+        BMI = weight/(height*height)
         data = {'patient_name#first_name' : first_name.value,
         'vital#vital_category' : 'BMI',
         'vital_value#bmi' : BMI,
