@@ -112,7 +112,7 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      let weight = Boolean(client.getConversationState().weight);
+      let weight = Boolean(client.getConversationState().weight;
       if(!weight){
         //ask for weight
         client.addResponse('ask_vital/weight')
