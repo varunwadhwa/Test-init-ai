@@ -96,7 +96,7 @@ exports.handle = (client) => {
 
   const saveHeight = client.createStep({
     extractInfo() {
-      let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'height')
+      let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'vital_value')
       console.log('got height as' + height);
       if (height) {
         client.updateConversationState({
