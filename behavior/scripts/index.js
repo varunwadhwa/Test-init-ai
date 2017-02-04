@@ -106,7 +106,8 @@ exports.handle = (client) => {
     }, 
     
     satisfied() {
-      console.log('in satisfied conv state condition is' + (Boolean(client.getConversationState().weight)))    
+      let weight = client.getConversationState().weight)
+      console.log('in satisfied weight is' + weight.value);   
       return Boolean(client.getConversationState().weight)
     },
 
