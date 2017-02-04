@@ -107,7 +107,8 @@ exports.handle = (client) => {
     
     satisfied() {
       let weight = client.getConversationState().weight
-      console.log('in satisfied weight is' + weight.value);   
+      if(weight)
+        console.log('in satisfied weight is' + weight.value);   
       return Boolean(client.getConversationState().weight)
     },
 
