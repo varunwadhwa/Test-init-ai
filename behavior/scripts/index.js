@@ -96,7 +96,7 @@ exports.handle = (client) => {
 
   const saveHeight = client.createStep({
     extractInfo() {
-      let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'vital_value')
+      let height = client.getFirstEntityWithRole(client.getMessagePart(), 'vital_value' , 'height')
       if (height) {
         console.log('got height as' + height.value);
         client.updateConversationState({
@@ -129,7 +129,7 @@ exports.handle = (client) => {
 */
   const saveWeight = client.createStep({
     extractInfo() {
-      let weight = client.getFirstEntityWithRole(client.getMessagePart(), 'vital' , 'vital_value')
+      let weight = client.getFirstEntityWithRole(client.getMessagePart(), 'vital_value' , 'weight')
       if (weight) {
         client.updateConversationState({
           weight : weight
@@ -150,9 +150,9 @@ exports.handle = (client) => {
         BMI = weight/(height*height);
         data = {'patient_name#first_name' : first_name.value,
         'vital#vital_category' : 'BMI',
-        'vital#vital_value' : BMI,
-        'vital#vital_ideal_value' : '65',
-        'vital#vital_unit' : 'kg'
+        'vital_value#bmi' : BMI,
+        'vital_value_ideal#weight' : '65',
+        'vital_unit#weight' : 'kg'
         }
         client.addResponse('provide_vital_value/bmi_value_range_text_normal',data)
       }else{

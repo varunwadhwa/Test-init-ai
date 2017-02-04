@@ -18,14 +18,14 @@ I'm [Varun](patient_name#first_name).
 < Please tell me your height.
 * ask_vital/height
 
-[5.5](vital#vital_value)
+[5.5](vital_value#height) [ft](vital_unit#height)
 * provide_vital_value/height
 
 < How much do you weigh?
 * ask_vital/weight
 
-[65](vital#vital_value) [kg](vital#vital_unit)
+[65](vital_value#weight) [kg](vital_unit#weight)
 * provide_vital_value/weight
 
-< [Varun](patient_name#first_name) ,your [BMI](vital#vital_category) is [27](vital#vital_value) which is higher than the normal [BMI](vital#vital_category). Ideally you should weigh around [65](vital#vital_ideal_value) [kg](vital#vital_unit).
+< [Varun](patient_name#first_name) ,your [BMI](vital#vital_category) is [27](vital_value#bmi) which is higher than the normal [BMI](vital#vital_category). Ideally you should weigh around [65](vital_value_ideal#weight) [kg](vital_unit#weight).
 * provide_vital_value/bmi_value_range_text_normal
