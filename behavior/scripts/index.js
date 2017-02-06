@@ -144,7 +144,10 @@ exports.handle = (client) => {
     prompt() {
       let weight = Boolean(client.getConversationState().weight)
       let height = Boolean(client.getConversationState().height)
+      let first_name = Boolean(client.getConversationState().first_name)
+      console.log('in saveWeight weight is '+ weight + 'and height is'+height + 'and first name is' + first_name);
       if(weight && height){
+        console.log('in saveWeight weight is '+ weight + 'and height is'+height);
         //calculate BMI
         let BMI,data;
         BMI = weight/(height*height)
