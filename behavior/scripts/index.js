@@ -153,7 +153,7 @@ exports.handle = (client) => {
         BMI = weight/(height*height)
         data = {'patient_name#first_name' : first_name.value,
         'vital#vital_category' : 'BMI',
-        'vital_value#bmi' : BMI,
+        'vital_value#bmi' : 'testdata',
         'vital_value_ideal#weight' : '65',
         'vital_unit#weight' : 'kg'
         }
