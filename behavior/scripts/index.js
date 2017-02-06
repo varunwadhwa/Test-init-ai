@@ -127,33 +127,6 @@ exports.handle = (client) => {
     }
   })
 
-  /*const getWeight = client.createStep({
-    
-    satisfied() {
-      let weight = client.getConversationState().weight
-      if(weight)
-        console.log('in getweight satisfied weight is' + weight.value) 
-      return Boolean(client.getConversationState().weight)
-    },
-
-    prompt() {
-      let weight = Boolean(client.getConversationState().weight)
-      console.log('in getweight prompt of save height' + weight)
-      if(!weight){
-        //ask for weight
-        console.log('in getWeight selected template - ask_vital/weight')
-        client.addResponse('ask_vital/weight')
-        client.expect('saveWeight',['provide_vital_value/weight'])
-      }else{
-        //handle this later  
-      }
-    }
-  })
-*/
-  /*let checkVitalValue = (vitalValue) => {
-    
-  }
-*/
   const saveWeight = client.createStep({
     extractInfo() {
       let weight = client.getFirstEntityWithRole(client.getMessagePart(), 'vital_value' , 'weight')
@@ -197,7 +170,8 @@ exports.handle = (client) => {
       'ask_identity/human':'humanIdentity',
       'provide_name/patient_name':'saveDemographicDetails',
       'provide_name/patient_name':'saveDemographicDetails',
-      'provide_vital_value/height':'saveHeight'
+      'provide_vital_value/height':'saveHeight',
+      'provide_vital_value/weight':'saveWeight'
     },
     autoResponses: {
       // configure responses to be automatically sent as predicted by the machine learning model
