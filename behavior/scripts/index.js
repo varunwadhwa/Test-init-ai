@@ -138,7 +138,7 @@ exports.handle = (client) => {
     }, 
     
     satisfied() {
-      return Boolean(client.getConversationState().weight)
+      return !(Boolean(client.getConversationState().weight))
     },
 
     prompt() {
