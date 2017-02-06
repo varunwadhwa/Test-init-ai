@@ -118,6 +118,29 @@ exports.handle = (client) => {
       if(!weight){
         //ask for weight
         console.log('selected template - ask_vital/weight')
+        //client.addResponse('ask_vital/weight')
+        //client.expect('saveWeight',['provide_vital_value/weight'])
+      }else{
+        //handle this later  
+      }
+    }
+  })
+
+  const getWeight = client.createStep({
+    
+    satisfied() {
+      let weight = client.getConversationState().weight
+      if(weight)
+        console.log('in getweight satisfied weight is' + weight.value) 
+      return Boolean(client.getConversationState().weight)
+    },
+
+    prompt() {
+      let weight = Boolean(client.getConversationState().weight)
+      console.log('in getweight prompt of save height' + weight)
+      if(!weight){
+        //ask for weight
+        console.log('in getWeight selected template - ask_vital/weight')
         client.addResponse('ask_vital/weight')
         client.expect('saveWeight',['provide_vital_value/weight'])
       }else{
@@ -182,7 +205,7 @@ exports.handle = (client) => {
       greetingRecipient : [greetingRecipient],	
       humanIdentity : [humanIdentity],
       saveDemographicDetails : [saveDemographicDetails],
-      saveHeight : [saveHeight],
+      saveHeight : [saveHeight,getWeight],
       saveWeight : [saveWeight],
       main: 'onboarding',
       onboarding: [sayHello],
