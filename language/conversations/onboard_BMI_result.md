@@ -27,5 +27,5 @@ I'm [Varun](patient_name#first_name).
 [65](vital_value#weight) [kg](vital_unit#weight)
 * provide_vital_value/weight
 
-< [Varun](patient_name#first_name) ,your [BMI](vital#vital_category) is [27](vital_value#bmi) which is higher than the normal [BMI](vital#vital_category). Ideally you should weigh around [65](vital_value_ideal#weight) [kg](vital_unit#weight).
+< [Varun](patient_name#first_name) ,your [BMI](vital#vital_category) is [27](vital_value#bmi) which is higher than the normal. Ideally you should weigh around [65](vital_value_ideal#weight) [kg](vital_unit#weight).
 * provide_vital_value/bmi_value_range_text_normal
