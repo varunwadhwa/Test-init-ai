@@ -155,6 +155,7 @@ exports.handle = (client) => {
         'vital_unit#weight' : 'kg'
         }
         client.addResponse('provide_vital_value/bmi_value_range_text_normal',data)
+        client.done()
       }else{
         //handle this later  
       }
