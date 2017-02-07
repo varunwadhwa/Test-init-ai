@@ -59,6 +59,7 @@ exports.handle = (client) => {
 	extractInfo() {
       let first_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'first_name')
       let last_name = client.getFirstEntityWithRole(client.getMessagePart(), 'patient_name' , 'last_name')
+      console.log('in saveDemographicDetails name is' + (first_name ? first_name.value : 'no name'))
       if (first_name) {
         client.updateConversationState({
           first_name : first_name
@@ -71,6 +72,7 @@ exports.handle = (client) => {
     },
 
     prompt() {
+      console.log('in saveDemographicDetails prompt')
       let data = client.getConversationState()
       client.addResponse('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
       client.addResponse('message/assist_get_data_msg')
