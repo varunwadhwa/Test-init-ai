@@ -77,6 +77,10 @@ exports.handle = (client) => {
       client.addResponse('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value})
       client.addResponse('message/assist_get_data_msg')
       client.addResponse('ask_vital/height')
+        //test purpose swapnil
+
+      client.addResponseWithReplies('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value}, [client.makeReplyButton('yes', null, 'promptMessage', {})]);
+
       client.expect('saveHeight',['provide_vital_value/height'])
       client.done()
     }
@@ -88,13 +92,6 @@ exports.handle = (client) => {
     if(!(data.first_name && data.last_name)){
       client.addResponse('ask_name/patient_name')
       client.expect('saveDemographicDetails',['provide_name/patient_name','provide_name/patient_name'])
-
-     
-
-      //test purpose swapnil
-
-      client.addResponseWithReplies('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value}, [client.makeReplyButton('yes', null, 'promptMessage', {})]);
-
     }
     //show patient demographics
     else{
