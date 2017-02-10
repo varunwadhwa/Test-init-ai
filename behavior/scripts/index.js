@@ -88,6 +88,13 @@ exports.handle = (client) => {
     if(!(data.first_name && data.last_name)){
       client.addResponse('ask_name/patient_name')
       client.expect('saveDemographicDetails',['provide_name/patient_name','provide_name/patient_name'])
+
+     
+
+      //test purpose swapnil
+
+      client.addResponseWithReplies('iterate_name/congratulatory_msg',{'patient_name#first_name' : data.first_name.value}, [client.makeReplyButton('yes', null, 'promptMessage', {})]);
+
     }
     //show patient demographics
     else{
